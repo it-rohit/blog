@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+{% for i in feature_post %}
+  {% if forloop.first  %}    
+  <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url( {% static 'images/cricket.jpg' %} );background-blend-mode : overlay;background-size:cover;">
+      <div class="col-md-8 px-0">
+        
+        <h1 class="display-4 font-italic"> {{i.title}} </h1>
+        <p class="lead my-3"> {{i.short_description}} </p>
+        <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+
+      </div>
+    </div>
+  {% endif %}  
+{% endfor %}  
+
+<!-- feature post -->
+<h3 class="text-uppercase text-warning" style="letter-spacing: 2px;"> Category - {{category_name}} </h3>
+  <div class="row mb-2">
+        {% if post %}
+            {% for i in post  %}  
+                <div class="col-md-6">
+                <div class="card border-0" >
+                    <div class="card-body">
+                    <h3> {{i.title}} </h3>
+                    <small class="mb-1 text-muted"> {{i.created_at}} ago| {{i.authory}} </small>
+                    <p class="card-text"> {{i.short_description |truncatewords:30 }} </p>
+                    </div>
+                </div>
+                </div>
+            
+            {% endfor %}
+        {% else %}
+            <p>No post found </p>
+        {% endif %}    
+
+    </div>
+
+  <!-- recent blog
+
+  <h3 class="text-uppercase text-warning" style="letter-spacing: 2px;">Recent Post </h3> -->
+{% endblock  %}  
